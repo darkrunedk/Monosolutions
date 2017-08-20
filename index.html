@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html ng-app="ToDo">
+<head>
+	<meta charset="utf-8" />
+	<title>Monosolutions test</title>
+
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+</head>
+<body>
+
+<div ng-controller="myCtrl">
+	<div ng-if="loggedIn">
+		<ul>
+			<li ng-repeat="task in tasks" class="task-item">
+				<input type="checkbox" ng-model="task.done" ng-click="markDone(task.id, task.done)" />
+				<div class="task" ng-class="{'done': task.done}">
+					<span>{{task.title}}</span>
+					<div class="notes">
+						<ul>
+							<li ng-repeat="note in task.notes">{{note}}</li>
+						</ul>
+						<div ng-hide="task.done">
+							<form name="noteForm" ng-submit="addNote(task.id)">
+								<input type="text" placeholder="Enter note for task..." ng-model="noteData.note" required />
+								<button ng-disabled="noteForm.$invalid">Add note</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</li>
+		</ul>
+
+		<form name="taskForm" ng-submit="addTask()">
+			<input type="text" placeholder="Enter title for task..." ng-model="taskData.title" required />
+			<button ng-disabled="taskForm.$invalid">Add task</button>
+		</form>
+
+		<button ng-click="hideCompleted()">Hide completed tasks</button>
+		<button ng-click="logout()">Log out</button>
+	</div>
+	<div ng-if="loggedIn == false">
+		<form name="loginForm" ng-submit="login()">
+			<input type="text" placeholder="Enter username..." ng-model="loginData.username" required />
+			<input type="password" placeholder="Enter password..." ng-model="loginData.password" required />
+			<button ng-disabled="loginForm.$invalid">Log in</button>
+		</form>
+	</div>
+</div>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/angular.min.js"></script>
+<script type="text/javascript" src="js/core.js"></script>
+</body>
+</html>

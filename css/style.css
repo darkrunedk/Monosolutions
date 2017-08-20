@@ -1,0 +1,7 @@
+button { margin: 10px 10px 0 0; }
+form button { margin: 0; }
+/* Classes */
+li.task-item { padding: 10px 0; border-bottom: #000 1px solid; }
+li.task-item:last-child { border-bottom: 0; }
+div.task { display: inline-block; vertical-align: middle; margin-left: 10px; }
+.done { text-decoration: line-through; color: #CCC;}
